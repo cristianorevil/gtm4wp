@@ -34,7 +34,10 @@ function gtm4wp_push_ecommerce( event_name, items, extra_params, event_callback=
 		dl_obj.eventTimeout  = event_timeout;
 	}
 
-	window[ gtm4wp_datalayer_name ].push(dl_obj);
+	document.addEventListener("wcc_gcm_updated", function(e) {
+		window[ gtm4wp_datalayer_name ].push(dl_obj);
+	});
+
 }
 
 function gtm4wp_read_from_json( json_data, exclude_keys=['productlink', 'internal_id'] ) {
